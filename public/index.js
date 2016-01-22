@@ -1,6 +1,11 @@
 var tasks
 
+
 var dispatcher =_.clone(Backbone.Events)
+
+
+
+
 
 $(document).on("ready", function(){
 
@@ -13,12 +18,22 @@ $(document).on("ready", function(){
 		})
 
 
-	
-	$("#rpg-list-container").append(view.$el)
 	}),
 
-	tasks.fetch()
+	$("#add-task").on("click", function(){
+		tasks.create({
+			task: $("#newTaskTitle").val(),
+			value: parseInt( $("#newValueTitle").val() ),
+		}),
+		console.log("yes")
+	}),
 
+
+	
+		//$("#rpg-list-container").append(view.$el)
+
+
+	tasks.fetch()
 
 })
 

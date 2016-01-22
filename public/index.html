@@ -5,12 +5,22 @@
 </head>
 <body>
 
-  <div id="rpg-list-container" class="container active"> <strong>FINISH ASAP</strong>
+  <div id="rpg-list-container" class="container active"> 
+  <strong>FINISHED</strong>
   </div>
 
+   <div id ="task-list-container" class ="container active"> <strong>Not Finished</strong>
+   </div>
+
+   <div class = "more-task">
+   <input id="newTaskTitle">Task</input><br>
+   <input id="newValueTitle">Value</input><br>
+    <button id="add-task">Add New Task</button><br>
+   </div>
+ 
+
+
   <div id="rpg-edit-container" class="container">
-    <div class="input-container">
-    </div>
   </div>
 
   <template id="rpg-template">
@@ -23,6 +33,7 @@
   		<div class = "created">Created at {{ created }}</div>
   		<button class = "done"> Done </button>
   		<button class = "notDone"> Not Done </button>
+      <button class = "editTask">Edit Task </button>
   	</div>
   </template>
   

@@ -3,16 +3,18 @@ var rpgView = Backbone.View.extend({
 
 	events:{
 		
-		//"click": "displayInformation",
+		
 		"click .done": "displayComplete",
 		"click .notDone": "displayNotComplete",
+
 	},
 
 	className: "tasks",
  
 	initialize: function() {
 		this.render()
-		
+		this.listenTo(this.model, "change", this.render)
+		console.log("click")
 	}, 
 	
 
@@ -21,32 +23,40 @@ var rpgView = Backbone.View.extend({
 		var htmlString = this.template(attrs)
 		this.$el.html( htmlString )
 
+		console.log(attrs.complete)
+
+		if (attrs.complete) {
+			$("#rpg-list-container").append(this.$el)
+		}
+		else {
+			$("#task-list-container").append(this.$el)
+		}
+
 
 	},
 
-
-	//this will switch the div class "tasks" to "tasks open"
-	/*displayInformation:function(){
-		this.$el.toggleClass("open")
-	},*/
-
 	displayComplete:function(){
-		this.$el.toggleClass("open")
+		
 		console.log("hello")
-
 		this.model.set("complete", true)
+		this.$el.addClass("open")
+		this.$el.removeClass("close")
 		this.model.save()
+
 
 	},
 
 	displayNotComplete:function(){
-		this.$el.toggleClass("open")
-		this.model.set("complete",false)
+		
+		this.model.set("complete", false)
+		this.$el.addClass("close")
+		this.$el.removeClass("open")
 
 		this.model.save()
-		console.log("hi")
+
 	},
 
+	
 
 	template: Handlebars.compile( $("#rpg-template").html() )
 	
